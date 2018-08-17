@@ -9,7 +9,7 @@
 
 "use strict"
 
-var formValidity = true;
+var formValidity = false;
 
 // Function to validate form on submit
 
@@ -23,9 +23,13 @@ function validateForm(evt) {
     }
 
     validateRequired();
+    
+    if (formValidity === true) {
+        document.getElementsByTagName("form")[0].submit();
+    } 
 }
 
-// Function to  Validate required fields
+// Function to validate required fields
 
 function validateRequired() {
     var inputElements = document.querySelectorAll("#contactinfo input");
@@ -54,6 +58,7 @@ function validateRequired() {
         if (fieldsetValidity === false) {
             throw "Please fill in all fields"
         } else {
+            formValidity = true;
             fieldsetValidity = true;
         }
     } catch (err) {
